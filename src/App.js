@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header" style="">
+        <header className="App-header">
           <p>
             Primeiros testes do #Grupo_9.
           </p>
