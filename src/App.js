@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import List from './component/List';
 // import logo from "./content/medtecnologia-logo.svg";
 class App extends Component {
 
@@ -30,14 +31,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          {/* <img src={logo} className="App-logo" alt="Texto de teste" /> */}
+
           <p className="logo">MedTecNologia</p>
 
         </header>
         <div className="App-body">
           <div className="App-posts">
-            {this.resultados()}
+            <List/>
           </div>
           <div className="App-informacoes">
             {this.informacoes()}
