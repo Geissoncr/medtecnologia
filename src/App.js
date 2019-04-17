@@ -34,56 +34,59 @@ class App extends Component {
         <p>Geisson</p>
       </div>)
   }
+  classificaTipo = (email) => {
+    
+    let dominio = email.substring(email.indexOf("@")+1, email.length);
+    let listaConsumidor = ['gmail.com', 'uol.com.br', 'ig.com.br'];
+    if(listaConsumidor.includes(dominio)){
+      return 'B2C';
+    }else{
+      return 'B2B';
+    }
+    
+  }
   formatData = (data) => {
-    let d = data.getFullYear() + '-' + data.getMonth() + '-' + data.getDate() + ' ' + data.getHours() + ':' + data.getMinutes() + ':' + data.getSeconds()
+    let dia = data.getDate().toString();
+    let diaf = dia.length === 1? '0'+dia : dia;
+    let mes = (data.getMonth()+1).toString();
+    let mesf = mes.length === 1? '0'+mes : mes;
+    let ano = data.getFullYear().toString();
+    let anof = ano.length === 1? '0'+ano : ano;
+
+    let hora = data.getHours().toString();
+    let horaf = hora.length === 1? '0'+hora : hora;
+    let minuto = data.getMinutes().toString();
+    let minutof = minuto.length === 1? '0'+minuto : minuto;
+    let segundos = data.getSeconds().toString();
+    let segundosf = segundos.length === 1? '0'+segundos : segundos;
+    let d = anof + '-' + mesf + '-' + diaf + ' ' + horaf + ':' + minutof + ':' + segundosf;
+    
     return d;
     // console.log(data.getFullYear());
   }
-  getIp =  () => {
-    // const tip = fetch("https://api.ipify.org/?format=jsonp&callback=?", 
-    // function(json){
-     
-    // });
-    // // console.log('teste', JSON.stringify(await fetch("https://api.ipify.org/?format=json")));
-    // return tip;
-    // const response = await fetch("http://meuip.com/api/meuip.php");
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", 'http://meuip.com/api/meuip.php');
-    xmlhttp.send();
-    
-    xmlhttp.onload = function (e) {
-      // ip1 = xmlhttp.response;
-      alert("Seu IP é: " + xmlhttp.ralertalertalertesponse);
-    }
-    // console.log('ip1: ', ip1);
-    // return ip1
-  }
+  
 
-  envioForm = (event) => {
+  envioForm = async (event) => {
     event.preventDefault();
-
-   
-      
     
     const { nome, email } = this.state;
     // const ref = firebase.database().ref("leads").push();
     const id = firebase.database().ref("leads").push().key;
     let component = this;
     let data = this.formatData(new Date());
-
-    let ip =  Ipify().then(ipi => {
-      console.log(ipi);
-      return ipi;
-      
-    });
+    let tipo = await this.classificaTipo(email);
+    let ip =  await Ipify().then(ipi => {
+            return ipi;
+          });
+    console.log(tipo);
     
-    console.log('ip' + ip);
 
     firebase.database().ref("leads/" + id).set({
       nome: nome,
       email: email,
       data: data,
       ip: ip,
+      tipo: tipo,
     }, function (error) {
       if (error) {
         alert(error);
