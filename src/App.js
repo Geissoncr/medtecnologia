@@ -37,7 +37,18 @@ class App extends Component {
   classificaTipo = (email) => {
     
     let dominio = email.substring(email.indexOf("@")+1, email.length);
-    let listaConsumidor = ['gmail.com', 'uol.com.br', 'ig.com.br'];
+    let listaConsumidor = [
+      'gmail.com', 
+      'uol.com.br', 
+      'ig.com.br', 
+      'outlook.com',
+      'outlook.com.br',
+      'hotmail.com',
+      'hotmail.com.br',
+      'bol.com.br',
+      'icloud.com',
+      'globo.com'];
+
     if(listaConsumidor.includes(dominio)){
       return 'B2C';
     }else{
@@ -78,9 +89,7 @@ class App extends Component {
     let ip =  await Ipify().then(ipi => {
             return ipi;
           });
-    console.log(tipo);
     
-
     firebase.database().ref("leads/" + id).set({
       nome: nome,
       email: email,
