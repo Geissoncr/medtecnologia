@@ -1,11 +1,11 @@
 export default {
     posts: {
       "post-de-teste": {
-        date: "2018-02-18",
-        title: "Primeira Postagem do Blog",
+        date: "2019-04-17",
+        title: "Redução de desperdícios e economia feita através da Tecnologia. Você também pode!",
         resumo: "",
-        image: "teste.jpg",
-        imageAlt: "mensagem Alternativa da IMagem",
+        image: "./content/OGA5I60.jpg",
+        imageAlt: "Avanço tecnologico na saúde",
         summary:
           "Hoje em dia, a tecnologia está presente em quase todas as nossas atividades. Para nos conectarmos com pessoas distantes, controlar nossos horários, chegar aos nossos destinos, fazer compras, assistir filmes, etc. Entretanto, a tecnologia não possui apenas funcionalidades para lazer, mas também para auxílio na gestão de empresas, através de softwares e app’s que possibilitam a organização dos recursos de uma organização. Dentre essas organizações, a gestão de hospitais e outras instituições da área da saúde."
 "Quando falamos sobre a gestão de hospitais (e empresas num geral), logo pensamos em gerir custos, recursos, escala de funcionários, etc. Porém, esquecemos de uma parte primordial a ser controlada: os medicamentos. Estes produtos precisam de muito cuidado ao serem armazenados, para que não estraguem e, consequentemente, prejudiquem a saúde da pessoa que fizer seu uso. Alguns medicamentos, inclusive, necessitam de um armazenamento especial, pois necessitam de refrigeração para manter sua qualidade. Por isso, a grande importância da tecnologia: garantir a maior eficiência no mapeamento térmico na armazenagem."
