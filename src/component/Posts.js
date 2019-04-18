@@ -1,19 +1,20 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
+import post1 from "../content/OGA5I60.jpg"
 
 export default ({ posts }) => (
-  <Fragment>
-    <ul>
+    <Fragment>
+    <div>
       {Object.entries(posts).map(([slug, post]) => (
-        <li key={slug}>
-        <img src="../content/OGADA" />
+        <div key={slug}>
+        <img src={post1} className="App-logo" alt={post.imageAlt} />
           <h2>
             <NavLink to={slug}>{post.title}</NavLink>
           </h2>
           <p>{post.summary}</p>
           <em>{post.date}</em>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   </Fragment>
-);
+  );

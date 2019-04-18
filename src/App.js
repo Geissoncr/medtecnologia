@@ -6,6 +6,7 @@ import Ipify from 'ipify';
 import logo from './content/medtecnologia-logo.svg';
 
 
+
 var config = {
   apiKey: "AIzaSyC1gw9YB98y9_ka89dAat33vCD2CzwQerw",
   authDomain: "medtecnologia-4bef8.firebaseapp.com",
@@ -29,12 +30,8 @@ class App extends Component {
       emailErro: '',
     }
   }
-  resultados() {
-    return (
-      <div>
-        <p>Geisson</p>
-      </div>)
-  }
+  
+
   classificaTipo = (email) => {
     
     let dominio = email.substring(email.indexOf("@")+1, email.length);
