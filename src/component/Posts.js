@@ -6,6 +6,7 @@ export default ({ posts }) => (
     <ul>
       {Object.entries(posts).map(([slug, post]) => (
         <li key={slug}>
+        <img src="../content/OGADA" />
           <h2>
             <NavLink to={slug}>{post.title}</NavLink>
           </h2>

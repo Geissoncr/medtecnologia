@@ -1,25 +1,28 @@
 .App {
-  text-align: center;
+  text-align: justify;
+  background-color: #f1f1f1;
 }
+
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 15vmin;
+  height: 25vmin;
   pointer-events: none;
 }
 
 .App-header {
-  background-color: #003d79 ;
+  background-color: #39C6E5 ;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: white;
 }
 .App-footer {
-  background-color: #003d79 ;
+  background-color: #39C6E5 ;
+  font-family: "ArciformFF";
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -30,19 +33,20 @@
 }
 .App-body{
   background-color: #ffffff;
-  border: 4px solid #ccc;
+  /* border: 4px solid #ccc; */
   display: flex;
   flex-direction: row;
   max-width: 0 auto;
 }
 .App-posts{
   background-color: #ffffff;
-  border: 4px solid #ccc;
+  font-family: "Roboto-Regular";
+  /* border: 4px solid #ccc; */
   flex-grow: 4;
 }
 .App-informacoes{
   background-color: #ffffff;
-  border: 4px solid #ccc;
+  /* border: 4px solid #ccc; */
   flex-grow: 1;
   
 }

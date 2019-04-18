@@ -7,7 +7,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+@font-face{
+  font-family: ArciformFF;
+  src: url(./content/fonts/ArciformFF/Arciform.otf);
+}
+@font-face{
+  font-family: Roboto-Regular;
+  src: url(./content/fonts/Roboto/Roboto-Regular.ttf)
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

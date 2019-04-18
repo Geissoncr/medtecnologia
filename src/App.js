@@ -3,6 +3,7 @@ import './App.css';
 import firebase from "firebase";
 import List from './component/List';
 import Ipify from 'ipify';
+import logo from './content/medtecnologia-logo.svg';
 
 
 var config = {
@@ -47,7 +48,9 @@ class App extends Component {
       'hotmail.com.br',
       'bol.com.br',
       'icloud.com',
-      'globo.com'];
+      'globo.com', 
+      'yahoo.com.br',
+      'yahoo.com.br'];
 
     if(listaConsumidor.includes(dominio)){
       return 'B2C';
@@ -124,9 +127,9 @@ class App extends Component {
   informacoes() {
     return (
       <div>
-        <p>Informacoes da Barra Lateral</p>
+        <p>Informacoes:</p>
         <div>
-          <p>Pesquisa</p>
+          
         </div>
         <div>
 
@@ -149,7 +152,7 @@ class App extends Component {
 
         </div>
         <div>
-          <p>Populares</p>
+          
         </div>
       </div>
     )
@@ -158,9 +161,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-
-          <p className="logo">MedTecNologia</p>
-
+          <img src={logo} className="App-logo" alt="logo da empresa MedTecnologia" />
+          
         </header>
         <div className="App-body">
           <div className="App-posts">
@@ -171,7 +173,7 @@ class App extends Component {
           </div>
         </div>
         <footer className="App-footer">
-          <p>Parte de Baixo</p>
+          
         </footer>
       </div>
     );
