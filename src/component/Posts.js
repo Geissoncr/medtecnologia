@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
-import post1 from "../content/OGA5I60.jpg"
+import post1 from "../content/img/OGA5I60.jpg"
 
 export default ({ posts }) => (
     <Fragment>

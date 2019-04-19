@@ -3,7 +3,7 @@ import './App.css';
 import firebase from "firebase";
 import List from './component/List';
 import Ipify from 'ipify';
-import logo from './content/medtecnologia-logo.svg';
+import logo from './content/img/medtecnologia-logo.svg';
 
 
 
@@ -124,12 +124,8 @@ class App extends Component {
   informacoes() {
     return (
       <div>
-        <p>Informacoes:</p>
+        <p>Cadastre-se para futuras Noticias:</p>
         <div>
-          
-        </div>
-        <div>
-
           <label htmlFor="nome">
             Nome
               </label>
