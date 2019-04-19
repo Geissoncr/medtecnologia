@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { NavLink } from "react-router-dom";
 
-export default ({ date, title, summary, imageAlt }) => (
+export default ({ date, title, summary,image,  imageAlt }) => (
   <Fragment>
-    <img src={`../content/img/medtecnologia-logo.svg`} alt={imageAlt}/>
+    <img src={image} alt={imageAlt}/>
     <h2>{title}</h2>
     <p>{summary}</p>
     <em>{date}</em>

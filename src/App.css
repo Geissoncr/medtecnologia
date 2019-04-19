@@ -1,29 +1,67 @@
+
 .App {
   text-align: justify;
   background-color: #f1f1f1;
+  display:flex;
+  flex-direction: column;
 }
 
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 25vmin;
+  height: 35vmin;
   pointer-events: none;
 }
 
 .App-header {
   background-color: #39C6E5 ;
-  min-height: 10vh;
+  background-image: url('./content/img/medico.jpg');
+  /* min-height: 10vh; */
+  height: 500px;
+  flex-basis:100;
   display: flex;
-  flex-direction: column;
+  /* flex-grow: 1; */
+  /* flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start; */
   font-size: calc(20px + 2vmin);
   color: white;
+  border-radius: 20px;
+}
+hr{
+  border-color:#aaa;
+  box-sizing: border-box;
+  width:100%;
+}
+.App-header-publicacoes{
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding-top: 70px;
+  padding-left: 50px;
+  padding-right: 40px;
+  flex-grow:1;
+}
+.App-h-titulo{
+  color: #003d79;
+  font-family: "Roboto-Regular";
+  font-size: 24px;
+  font-weight: bold;
+}
+.App-h-categoria{
+  color: #003d79;
+  font-family: "Roboto-Regular";
+  font-size: 16px;
+  
+  font-weight: bold;
+}
+.App-header-logo{
+  flex-grow: 3;
 }
 .App-footer {
   background-color: #39C6E5 ;
   font-family: "ArciformFF";
-  min-height: 10vh;
+  height: 300px;
+  flex-grow:1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -32,23 +70,32 @@
   color: white;
 }
 .App-body{
-  background-color: #ffffff;
+  background-color: #f1f1f1;
   /* border: 4px solid #ccc; */
   display: flex;
   flex-direction: row;
+  flex-basis: 100;
   max-width: 0 auto;
 }
-.App-posts{
-  background-color: #ffffff;
+.h3{
   font-family: "Roboto-Regular";
+}
+.App-posts{
+  background-color: #f1f1f1;
+  font-family: "Roboto-Regular";
+  /* flex-grow: 1; */
+  width: 1000px
   /* border: 4px solid #ccc; */
-  flex-grow: 4;
+  
 }
 .App-informacoes{
-  background-color: #ffffff;
+  background-color: #f1f1f1;
   /* border: 4px solid #ccc; */
-  flex-grow: 1;
+  flex-grow: 3;
   
+}
+.TextoGeral{
+  justify-content: left;
 }
 .App-link {
   color: #61dafb;

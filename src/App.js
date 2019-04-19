@@ -5,8 +5,6 @@ import List from './component/List';
 import Ipify from 'ipify';
 import logo from './content/img/medtecnologia-logo.svg';
 
-
-
 var config = {
   apiKey: "AIzaSyC1gw9YB98y9_ka89dAat33vCD2CzwQerw",
   authDomain: "medtecnologia-4bef8.firebaseapp.com",
@@ -17,8 +15,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-// import Form  from './component/Form'; 
-// import logo from "./content/medtecnologia-logo.svg";
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -30,66 +27,67 @@ class App extends Component {
       emailErro: '',
     }
   }
-  
+
 
   classificaTipo = (email) => {
-    
-    let dominio = email.substring(email.indexOf("@")+1, email.length);
+
+    let dominio = email.substring(email.indexOf("@") + 1, email.length);
     let listaConsumidor = [
-      'gmail.com', 
-      'uol.com.br', 
-      'ig.com.br', 
+      'gmail.com',
+      'uol.com.br',
+      'ig.com.br',
       'outlook.com',
       'outlook.com.br',
       'hotmail.com',
       'hotmail.com.br',
       'bol.com.br',
       'icloud.com',
-      'globo.com', 
+      'terra.com.br',
+      'globo.com',
       'yahoo.com.br',
       'yahoo.com.br'];
 
-    if(listaConsumidor.includes(dominio)){
+    if (listaConsumidor.includes(dominio)) {
       return 'B2C';
-    }else{
+    } else {
       return 'B2B';
     }
-    
+
   }
   formatData = (data) => {
     let dia = data.getDate().toString();
-    let diaf = dia.length === 1? '0'+dia : dia;
-    let mes = (data.getMonth()+1).toString();
-    let mesf = mes.length === 1? '0'+mes : mes;
+    let diaf = dia.length === 1 ? '0' + dia : dia;
+    let mes = (data.getMonth() + 1).toString();
+    let mesf = mes.length === 1 ? '0' + mes : mes;
     let ano = data.getFullYear().toString();
-    let anof = ano.length === 1? '0'+ano : ano;
+    let anof = ano.length === 1 ? '0' + ano : ano;
 
     let hora = data.getHours().toString();
-    let horaf = hora.length === 1? '0'+hora : hora;
+    let horaf = hora.length === 1 ? '0' + hora : hora;
     let minuto = data.getMinutes().toString();
-    let minutof = minuto.length === 1? '0'+minuto : minuto;
+    let minutof = minuto.length === 1 ? '0' + minuto : minuto;
     let segundos = data.getSeconds().toString();
-    let segundosf = segundos.length === 1? '0'+segundos : segundos;
+    let segundosf = segundos.length === 1 ? '0' + segundos : segundos;
     let d = anof + '-' + mesf + '-' + diaf + ' ' + horaf + ':' + minutof + ':' + segundosf;
-    
+
     return d;
-    // console.log(data.getFullYear());
+    
   }
-  
+
 
   envioForm = async (event) => {
     event.preventDefault();
-    
+
     const { nome, email } = this.state;
-    // const ref = firebase.database().ref("leads").push();
+    
     const id = firebase.database().ref("leads").push().key;
     let component = this;
     let data = this.formatData(new Date());
     let tipo = await this.classificaTipo(email);
-    let ip =  await Ipify().then(ipi => {
-            return ipi;
-          });
-    
+    let ip = await Ipify().then(ipi => {
+      return ipi;
+    });
+
     firebase.database().ref("leads/" + id).set({
       nome: nome,
       email: email,
@@ -100,7 +98,8 @@ class App extends Component {
       if (error) {
         alert(error);
       } else {
-        component.setState({ nome: '', email: '' });
+        alert('Cadastro enviado com Sucesso!!!!');
+        component.setState({ nome: '', email: '', ip: '', tipo: '' });
       }
     });
     return id;
@@ -121,31 +120,55 @@ class App extends Component {
     const { email } = this.state;
     this.setState({ emailErro: email.length > 3 ? null : 'O email deve ter mais de 3 caracteres' })
   }
+  publicacoes() {
+    return (
+      <div className="App-header">
+        <div className="App-header-logo">
+          <img src={logo} className="App-logo" alt="logo da empresa MedTecnologia" />
+        </div>
+        {/* <div className="App-header-publicacoes">
+          <div className="App-h-titulo">Novas Publicações</div>
+          <br />
+          <hr />
+          <div className="App-h-categoria">MEDICINA
+          <p></p>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          </div>
+          <div className="App-h-categoria">TECNOLOGIA</div>
+        </div> */}
+      </div>
+    );
+  }
   informacoes() {
     return (
       <div>
-        <p>Cadastre-se para futuras Noticias:</p>
+        <h3>Cadastre-se :</h3>
+        <p className="TextoGeral">Se você quiser mais informacoes sobre Tecnologia na Medicina preencha aqui:</p>
         <div>
           <label htmlFor="nome">
             Nome
-              </label>
           <input name="nome" placeholder="Digite seu Nome"
-            value={this.state.nome}
-            onChange={this.verificaMudancaNome}
-            onBlur={this.validarNome} />
+              value={this.state.nome}
+              onChange={this.verificaMudancaNome}
+              onBlur={this.validarNome} />
+          </label>
 
           <label htmlFor="email">
             e-mail
-              </label>
           <input name="email" placeholder="Digite seu E-mail"
-            value={this.state.email}
-            onChange={this.verificaMudancaEmail} />
+              value={this.state.email}
+              onChange={this.verificaMudancaEmail} />
+          </label>
 
           <input type="button" onClick={this.envioForm} value="Enviar" />
 
         </div>
         <div>
-          
+
         </div>
       </div>
     )
@@ -153,9 +176,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo da empresa MedTecnologia" />
-          
+        <header>
+
+          {this.publicacoes()}
+
         </header>
         <div className="App-body">
           <div className="App-posts">
@@ -166,7 +190,7 @@ class App extends Component {
           </div>
         </div>
         <footer className="App-footer">
-          
+
         </footer>
       </div>
     );
