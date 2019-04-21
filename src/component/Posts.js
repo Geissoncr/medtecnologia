@@ -8,7 +8,7 @@ export default ({ posts }) => (
     <div>
       {Object.entries(posts).map(([slug, post]) => (
         <div key={slug}>
-          <img src={post.image} className="App-logo" alt={post.imageAlt} />
+          <img src={post.image} className="App-image" alt={post.imageAlt} />
           <h2>
             <NavLink to={slug}>{post.title}</NavLink>
           </h2>

@@ -71,7 +71,7 @@ class App extends Component {
     let d = anof + '-' + mesf + '-' + diaf + ' ' + horaf + ':' + minutof + ':' + segundosf;
 
     return d;
-    
+
   }
 
 
@@ -79,7 +79,7 @@ class App extends Component {
     event.preventDefault();
 
     const { nome, email } = this.state;
-    
+
     const id = firebase.database().ref("leads").push().key;
     let component = this;
     let data = this.formatData(new Date());
@@ -156,14 +156,15 @@ class App extends Component {
               onChange={this.verificaMudancaNome}
               onBlur={this.validarNome} />
           </label>
-
+          <br />
           <label htmlFor="email">
             e-mail
           <input name="email" placeholder="Digite seu E-mail"
               value={this.state.email}
               onChange={this.verificaMudancaEmail} />
+              
           </label>
-
+          <br />
           <input type="button" onClick={this.envioForm} value="Enviar" />
 
         </div>
@@ -177,12 +178,11 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-
           {this.publicacoes()}
-
         </header>
         <div className="App-body">
           <div className="App-posts">
+            
             <List />
           </div>
           <div className="App-informacoes">

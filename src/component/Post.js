@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default ({ date, title, summary,image,  imageAlt }) => (
   <Fragment>
-    <img src={image} alt={imageAlt} className = "App-logo"/>
+    <img src={image} alt={imageAlt} className = "App-image"/>
     <h2>{title}</h2>
     <p style={{whiteSpace: "pre-wrap"}} >{summary}</p>
     <em>{date}</em>

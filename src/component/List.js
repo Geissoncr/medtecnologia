@@ -10,7 +10,6 @@ export default () => (
   <Router>
     <Switch>
       <Route exact path="/" render={routeProps => <Posts {...data} />} />
-
       {Object.entries(data.posts).map(([slug, post]) => (
         <Route 
           key={slug}
