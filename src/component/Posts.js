@@ -4,18 +4,18 @@ import { NavLink } from "react-router-dom";
 // import post2 from "../content/img/medico.jpg";
 
 export default ({ posts }) => (
-    <Fragment>
+  <Fragment>
     <div>
       {Object.entries(posts).map(([slug, post]) => (
         <div key={slug}>
-        <img src={post.image} className="App-logo" alt={post.imageAlt} />
+          <img src={post.image} className="App-logo" alt={post.imageAlt} />
           <h2>
             <NavLink to={slug}>{post.title}</NavLink>
           </h2>
-          <div style={{whiteSpace: "pre-wrap"}}>{post.summary}</div>
+          <div style={{ whiteSpace: "pre-wrap" }}>{post.resumo}</div>
           <em>{post.date}</em>
         </div>
       ))}
     </div>
   </Fragment>
-  );
+);
