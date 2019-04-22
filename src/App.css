@@ -68,9 +68,9 @@ hr{
   
   font-weight: bold;
 }
-/* .App-header-logo{
-  flex-grow: 3;
-} */
+.App-header-logo{
+  padding:20px;
+}
 .App-footer {
   background-color: #4dbbff ;
   font-family: "ArciformFF";

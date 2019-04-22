@@ -124,7 +124,7 @@ class App extends Component {
     return (
       <div className="App-header">
         <div className="App-header-logo">
-          <img src={logo} className="App-logo" alt="logo da empresa MedTecnologia" />
+          <h1><img src={logo} className="App-logo" alt="logo da empresa MedTecnologia" /></h1>
         </div>
         {/* <div className="App-header-publicacoes">
           <div className="App-h-titulo">Novas Publicações</div>
