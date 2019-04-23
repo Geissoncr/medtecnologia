@@ -187,7 +187,6 @@ class App extends Component {
         </header>
         <div className="App-body">
           <div className="App-posts">
-
             <List />
           </div>
           <div className="App-informacoes">

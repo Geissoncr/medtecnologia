@@ -9,7 +9,7 @@ export default ({ posts }) => (
   <Fragment>
     <div>
       {Object.entries(posts).map(([slug, post]) => (
-        <div style={{padding:"10px", background: "#ffff", marginBottom: "20px"}} key={slug}>
+        <div style={{padding:"10px", background: "#ffff", marginBottom: "20px", borderRadius: "30px"}} key={slug}>
           <img src={post.image} className="App-image" alt={post.imageAlt} />
           <h1 style={{fontSize: "30px", color:"#003d79", fontFamily:"Roboto-Regular"}}>{post.title}</h1>
           <p>{post.date}</p>
