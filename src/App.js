@@ -4,6 +4,12 @@ import firebase from "firebase";
 import List from './component/List';
 import Ipify from 'ipify';
 import logo from './content/img/medtecnologia-logo.svg';
+import { Helmet } from 'react-helmet';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel, faUser,faEnvelope);
 
 var config = {
   apiKey: "AIzaSyC1gw9YB98y9_ka89dAat33vCD2CzwQerw",
@@ -145,44 +151,43 @@ class App extends Component {
   }
   informacoes() {
     return (
-      <div>
-        <h3>Cadastre-se :</h3>
-        <p className="TextoGeral">Se você quiser mais informacoes sobre Tecnologia na Medicina preencha aqui:</p>
-        <div>
-          <label htmlFor="nome">
-            Nome
-          <input name="nome" placeholder="Digite seu Nome"
+      <div className="form-geral">
+        <h2>Cadastre-se :</h2>
+        <p>Se você quiser mais informacoes sobre Tecnologia na Medicina preencha aqui:</p>
+        <div className="input-container">
+          <i className="fa icon"><FontAwesomeIcon icon="user"/></i>
+          <input className="input-field" name="nome" placeholder="Nome"
               value={this.state.nome}
               onChange={this.verificaMudancaNome}
               onBlur={this.validarNome} />
-          </label>
-          <br />
-          <label htmlFor="email">
-            e-mail
-          <input name="email" placeholder="Digite seu E-mail"
+       
+        </div>
+        <div className="input-container">
+           <i className="fa icon"><FontAwesomeIcon icon="envelope"/></i>
+           <input className="input-field" name="email" placeholder="E-mail"
               value={this.state.email}
               onChange={this.verificaMudancaEmail} />
-              
-          </label>
-          <br />
-          <input type="button" onClick={this.envioForm} value="Enviar" />
-
         </div>
-        <div>
-
-        </div>
+          <input type="button" className="btn" onClick={this.envioForm} value="Enviar" />
+        
       </div>
     )
   }
   render() {
     return (
       <div className="App">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>MedTecnologia | Informações sobre aplicação de tecnologia na medicina</title>
+          <meta name="description" content="Tecnologia na medicina e setor de saúde. Informações completas e relevantes sobre as novas tecnologias aplicadas na medicina."/>
+          <link rel="canonical" href="http://medtecnologia.com.br/" />
+        </Helmet>
         <header>
           {this.publicacoes()}
         </header>
         <div className="App-body">
           <div className="App-posts">
-            
+
             <List />
           </div>
           <div className="App-informacoes">
