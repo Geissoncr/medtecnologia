@@ -180,7 +180,8 @@ class App extends Component {
             value={this.state.email}
             onChange={this.verificaMudancaEmail} />
         </div>
-        <input type="submit" className="btn" value="Enviar" />
+        <button className="btn"  type="submit">Enviar</button>
+        {/* <input type="submit" className="btn" value="Enviar" /> */}
         <h4>Não enviaremos Spam...</h4>
 
       </form>
