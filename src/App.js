@@ -84,8 +84,7 @@ class App extends Component {
 
   envioForm = async (event) => {
     event.preventDefault();
-    console.log(event);
-    
+        
     const { nome, email, nomeErro, emailErro } = this.state;
     let identificacao = '';
     if(nomeErro.length>0){
@@ -164,7 +163,7 @@ class App extends Component {
   }
   informacoes() {
     return (
-      <form className="form-geral" onSubmit={this.envioForm}>
+      <form className="form-geral">
         <h2>Cadastre-se</h2>
         <p>E fique sempre atualizado sobre notícias de Tecnologia na Medicina. É grátis!</p>
         <div className="input-container">
@@ -180,8 +179,8 @@ class App extends Component {
             value={this.state.email}
             onChange={this.verificaMudancaEmail} />
         </div>
-        <button className="btn"  type="submit">Enviar</button>
-        {/* <input type="submit" className="btn" value="Enviar" /> */}
+        {/* <button className="btn"  type="submit">Enviar</button> */}
+        <input  onClick={this.envioForm} type="submit" className="btn" value="Enviar" />
         <h4>Não enviaremos Spam...</h4>
 
       </form>
