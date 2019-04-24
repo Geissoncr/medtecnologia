@@ -29,10 +29,10 @@ class App extends Component {
       nome: '',
       email: '',
       ip: '',
-      nomeErro: 'Não mande informações em branco!!',
-      emailErro: 'Não mande informações em branco!!',
+      nomeErro: 'Não mande o nome em branco!!',
+      emailErro: 'Não mande o endereço de e-mail em branco!!',
     }
-    // this.envioForm = this.envioForm.bind(this);
+    this.envioForm = this.envioForm.bind(this);
   }
 
 
@@ -89,10 +89,10 @@ class App extends Component {
     const { nome, email, nomeErro, emailErro } = this.state;
     let identificacao = '';
     if(nomeErro.length>0){
-      alert('nome'+nomeErro);
+      alert(nomeErro);
     }else{
       if(emailErro.length >0){
-        alert('email' + emailErro);
+        alert( emailErro);
       }else{
 
         const id = firebase.database().ref("leads").push().key;
@@ -114,7 +114,8 @@ class App extends Component {
             alert(error);
           } else {
             alert('Cadastro enviado com Sucesso!!!!');
-            component.setState({ nome: '', email: '', ip: '', tipo: '' });
+            component.setState({ nome: '', email: '', ip: '', tipo: '', nomeErro: 'Não mande o nome em branco!!',
+            emailErro: 'Não mande o endereço de e-mail em branco!!' });
           }
         });
         identificacao = id;
