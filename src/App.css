@@ -104,7 +104,7 @@ hr{
   flex: 3;
   max-width: 1400px;
   /* width: 1000px; */
-  padding: 40px;
+  padding: 35px;
   border-radius: 100px;
   /* border: 4px solid #ccc; */
   
@@ -157,7 +157,8 @@ hr{
   background-color:#003d79;
   border-radius: 10px;
   padding: 2px 15px 15px 15px;
-  width: 310px;
+  max-width: 310px;
+  justify-self: center;
 }
 
 h2{
@@ -168,6 +169,17 @@ h2{
   font-stretch: normal;
   line-height: 1.07;
   letter-spacing: 1.5px;
+  text-align: center;
+  color: #ffffff;
+}
+h4{
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  /* font-weight: bold; */
+  font-style: normal;
+  font-stretch: normal;
+  /* line-height: 1.07; */
+  /* letter-spacing: 1.5px; */
   text-align: left;
   color: #ffffff;
 }

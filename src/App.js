@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faStroopwafel, faUser,faEnvelope);
+library.add(faStroopwafel, faUser, faEnvelope);
 
 var config = {
   apiKey: "AIzaSyC1gw9YB98y9_ka89dAat33vCD2CzwQerw",
@@ -29,9 +29,10 @@ class App extends Component {
       nome: '',
       email: '',
       ip: '',
-      nomeErro: '',
-      emailErro: '',
+      nomeErro: 'Não mande informações em branco!!',
+      emailErro: 'Não mande informações em branco!!',
     }
+    // this.envioForm = this.envioForm.bind(this);
   }
 
 
@@ -83,32 +84,43 @@ class App extends Component {
 
   envioForm = async (event) => {
     event.preventDefault();
+    console.log(event);
+    
+    const { nome, email, nomeErro, emailErro } = this.state;
+    let identificacao = '';
+    if(nomeErro.length>0){
+      alert('nome'+nomeErro);
+    }else{
+      if(emailErro.length >0){
+        alert('email' + emailErro);
+      }else{
 
-    const { nome, email } = this.state;
-
-    const id = firebase.database().ref("leads").push().key;
-    let component = this;
-    let data = this.formatData(new Date());
-    let tipo = await this.classificaTipo(email);
-    let ip = await Ipify().then(ipi => {
-      return ipi;
-    });
-
-    firebase.database().ref("leads/" + id).set({
-      nome: nome,
-      email: email,
-      data: data,
-      ip: ip,
-      tipo: tipo,
-    }, function (error) {
-      if (error) {
-        alert(error);
-      } else {
-        alert('Cadastro enviado com Sucesso!!!!');
-        component.setState({ nome: '', email: '', ip: '', tipo: '' });
+        const id = firebase.database().ref("leads").push().key;
+        let component = this;
+        let data = this.formatData(new Date());
+        let tipo = await this.classificaTipo(email);
+        let ip = await Ipify().then(ipi => {
+          return ipi;
+        });
+        
+        firebase.database().ref("leads/" + id).set({
+          nome: nome,
+          email: email,
+          data: data,
+          ip: ip,
+          tipo: tipo,
+        }, function (error) {
+          if (error) {
+            alert(error);
+          } else {
+            alert('Cadastro enviado com Sucesso!!!!');
+            component.setState({ nome: '', email: '', ip: '', tipo: '' });
+          }
+        });
+        identificacao = id;
       }
-    });
-    return id;
+    }
+      return identificacao;
   }
   verificaMudancaNome = (event) => {
 
@@ -120,11 +132,11 @@ class App extends Component {
   }
   validarNome = () => {
     const { nome } = this.state;
-    this.setState({ nomeErro: nome.length > 3 ? null : 'O nome deve ter mais de 3 caracteres' })
+    this.setState({ nomeErro: nome.length > 3 ? '' :  'O nome deve ter mais de 3 caracteres' })
   }
   validarEmail = () => {
     const { email } = this.state;
-    this.setState({ emailErro: email.length > 3 ? null : 'O email deve ter mais de 3 caracteres' })
+    this.setState({ emailErro: email.length > 3 ?  '' : 'O email deve ter mais de 3 caracteres' })
   }
   publicacoes() {
     return (
@@ -151,26 +163,26 @@ class App extends Component {
   }
   informacoes() {
     return (
-      <div className="form-geral">
-        <h2>Cadastre-se :</h2>
-        <p>Se você quiser mais informacoes sobre Tecnologia na Medicina preencha aqui:</p>
+      <form className="form-geral" onSubmit={this.envioForm}>
+        <h2>Cadastre-se</h2>
+        <p>E fique sempre atualizado sobre notícias de Tecnologia na Medicina. É grátis!</p>
         <div className="input-container">
-          <i className="fa icon"><FontAwesomeIcon icon="user"/></i>
+          <i className="fa icon"><FontAwesomeIcon icon="user" /></i>
           <input className="input-field" name="nome" placeholder="Nome"
-              value={this.state.nome}
-              onChange={this.verificaMudancaNome}
-              onBlur={this.validarNome} />
-       
+            value={this.state.nome}
+            onChange={this.verificaMudancaNome}
+            onBlur={this.validarNome} />
         </div>
         <div className="input-container">
-           <i className="fa icon"><FontAwesomeIcon icon="envelope"/></i>
-           <input className="input-field" name="email" placeholder="E-mail"
-              value={this.state.email}
-              onChange={this.verificaMudancaEmail} />
+          <i className="fa icon"><FontAwesomeIcon icon="envelope" /></i>
+          <input className="input-field" name="email" placeholder="E-mail"
+            value={this.state.email}
+            onChange={this.verificaMudancaEmail} />
         </div>
-          <input type="button" className="btn" onClick={this.envioForm} value="Enviar" />
-        
-      </div>
+        <input type="submit" className="btn" value="Enviar" />
+        <h4>Não enviaremos Spam...</h4>
+
+      </form>
     )
   }
   render() {
@@ -179,7 +191,7 @@ class App extends Component {
         <Helmet>
           <meta charSet="utf-8" />
           <title>MedTecnologia | Informações sobre aplicação de tecnologia na medicina</title>
-          <meta name="description" content="Tecnologia na medicina e setor de saúde. Informações completas e relevantes sobre as novas tecnologias aplicadas na medicina."/>
+          <meta name="description" content="Tecnologia na medicina e setor de saúde. Informações completas e relevantes sobre as novas tecnologias aplicadas na medicina." />
           <link rel="canonical" href="http://medtecnologia.com.br/" />
         </Helmet>
         <header>
