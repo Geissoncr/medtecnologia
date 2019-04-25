@@ -3,6 +3,14 @@ import post2 from "../content/img/medico.jpg";
 import post3 from "../content/img/image_ek2.png";
 export default {
   posts: {
+    "Saiba como e por que controlar a temperatura de medicamentos ambientes hospitalares.":{
+      date: "2019-04-24 às 23:00",
+      title: "Saiba como e por que controlar a temperatura de medicamentos ambientes hospitalares.",
+      resumo: "Nos hospitais e serviços de saúde, os medicamentos desempenham um papel muito importante, de modo que sua administração se tornou uma necessidade.",
+      image: post1,
+      imageAlt: "como e porque controlar a temperatura",
+      summary: "Ambientes hospitalares precisam de segurança, monitoramento 24/7 para manter os medicamentos, sangue/tecidos, e equipamentos e ferramentas médicas com temperaturas especificadas com níveis de umidade toleradas. Esses controles, especialmente a temperatura e umidade,  são críticos para manter a segurança dos medicamentos, salas de procedimentos cirúrgicos, áreas de neonatal e áreas usadas para composição de medicamentos. \n \nEmbora não haja um único regulador para ambientes clínicos e hospitalares, existem várias reguladores estaduais e agências que fazem recomendações, como a Associação de Credenciamento para Proteção de Pesquisa em Humanos e Agência Reguladora de Medicamentos e Produtos de Saúde (MHRA).\n \nEssas (e várias outras) organizações buscam estabelecer métodos para armazenar, processar e transportar medicamentos, células humanas e materiais, equipamentos médicos e outros produtos usados em aplicações clínicas e hospitalares. Por exemplo, de acordo com a USP 29-NF 24, temperaturas devem ser controladas e registradas para garantir que as condições predeterminadas são mantidas de acordo com as instruções de dados de estabilidade do fornecedor.\n \nA chave para a conformidade com o hospital, armazenamento de sangue / tecido, regulamentos e orientação da área de testes clínicos é a capacidade de responder, registrar e relatar as condições em ambientes controlados.\n LINK ORIGINAL:\nhttps://www.vaisala.com/en/compliant-temperature-and-humidity-monitoring-hospitals-and-healthcare-facilities",  
+    },
     "post1": {
       date: "2019-04-17 às 23:00",
       title: "Redução de desperdícios e economia feita através da Tecnologia. Você também pode!",

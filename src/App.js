@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { reject } from 'q';
 
 library.add(faStroopwafel, faUser, faEnvelope);
 
@@ -37,7 +38,7 @@ class App extends Component {
 
 
   classificaTipo = (email) => {
-
+    // alert('ClassificaTipo')
     let dominio = email.substring(email.indexOf("@") + 1, email.length);
     let listaConsumidor = [
       'gmail.com',
@@ -81,10 +82,31 @@ class App extends Component {
 
   }
 
+  getIp() {
+    return new Promise((resolve, reject)=>{
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://cors-anywhere.herokuapp.com/http://api.ipify.org/?format=json",true);
+      xhr.setRequestHeader("Accept", 'application/json');
+      xhr.setRequestHeader("origin", 'x-request-with');
+      xhr.send();
+      let response = [];
+      // alert(xhr.readyState);
+      xhr.onload = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+          response =JSON.parse(xhr.responseText).ip;
+          // alert(JSON.stringify(response));
+          resolve(response);
+        }
+      };
+  
+    })
+    
+  };
 
   envioForm = async (event) => {
     event.preventDefault();
-        
+    
+    // alert('Teste relampago envioform');
     const { nome, email, nomeErro, emailErro } = this.state;
     let identificacao = '';
     if(nomeErro.length>0){
@@ -93,14 +115,24 @@ class App extends Component {
       if(emailErro.length >0){
         alert( emailErro);
       }else{
-
+        // alert('antes id');
         const id = firebase.database().ref("leads").push().key;
+        // alert('antes component');
         let component = this;
+        // alert('data');
         let data = this.formatData(new Date());
+        // alert('tipo');
         let tipo = await this.classificaTipo(email);
-        let ip = await Ipify().then(ipi => {
-          return ipi;
-        });
+        // alert('IP');
+        let ip = await this.getIp().then(response => {return response;});
+        // let ip = await Ipify().then(ipi => {
+        //   return ipi;
+        // }, function(error){
+        //   if(error){
+        //     alert(error)
+        //   }
+        // });
+        // alert('antes firebase');
         
         firebase.database().ref("leads/" + id).set({
           nome: nome,
@@ -179,8 +211,8 @@ class App extends Component {
             value={this.state.email}
             onChange={this.verificaMudancaEmail} />
         </div>
-        {/* <button className="btn"  type="submit">Enviar</button> */}
-        <input  onClick={this.envioForm} type="submit" className="btn" value="Enviar" />
+        <button className="btn" onClick={this.envioForm}  type="submit">Enviar</button>
+        {/* <input  onClick={this.envioForm} type="submit" className="btn" value="Enviar" /> */}
         <h4>Não enviaremos Spam...</h4>
 
       </form>
