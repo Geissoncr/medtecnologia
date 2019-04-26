@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { reject } from 'q';
+import Modal from 'react-awesome-modal';
 
 library.add(faStroopwafel, faUser, faEnvelope);
 
@@ -30,12 +31,26 @@ class App extends Component {
       nome: '',
       email: '',
       ip: '',
+      visible: false,
       nomeErro: 'Não mande o nome em branco!!',
       emailErro: 'Não mande o endereço de e-mail em branco!!',
     }
     this.envioForm = this.envioForm.bind(this);
   }
+  openModal() {
+    this.setState({
+      visible: true
+    });
+  }
+  closeModal() {
+    this.setState({
+      visible: false
+    });
+  }
 
+  componentWillMount() {
+    {this.openModal()}
+  }
 
   classificaTipo = (email) => {
     // alert('ClassificaTipo')
@@ -83,38 +98,38 @@ class App extends Component {
   }
 
   getIp() {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://cors-anywhere.herokuapp.com/http://api.ipify.org/?format=json",true);
+      xhr.open("GET", "https://cors-anywhere.herokuapp.com/http://api.ipify.org/?format=json", true);
       xhr.setRequestHeader("Accept", 'application/json');
       xhr.setRequestHeader("origin", 'x-request-with');
       xhr.send();
       let response = [];
       // alert(xhr.readyState);
       xhr.onload = function () {
-        if(xhr.readyState === 4 && xhr.status === 200){
-          response =JSON.parse(xhr.responseText).ip;
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          response = JSON.parse(xhr.responseText).ip;
           // alert(JSON.stringify(response));
           resolve(response);
         }
       };
-  
+
     })
-    
+
   };
 
   envioForm = async (event) => {
     event.preventDefault();
-    
+
     // alert('Teste relampago envioform');
     const { nome, email, nomeErro, emailErro } = this.state;
     let identificacao = '';
-    if(nomeErro.length>0){
+    if (nomeErro.length > 0) {
       alert(nomeErro);
-    }else{
-      if(emailErro.length >0){
-        alert( emailErro);
-      }else{
+    } else {
+      if (emailErro.length > 0) {
+        alert(emailErro);
+      } else {
         // alert('antes id');
         const id = firebase.database().ref("leads").push().key;
         // alert('antes component');
@@ -124,7 +139,7 @@ class App extends Component {
         // alert('tipo');
         let tipo = await this.classificaTipo(email);
         // alert('IP');
-        let ip = await this.getIp().then(response => {return response;});
+        let ip = await this.getIp().then(response => { return response; });
         // let ip = await Ipify().then(ipi => {
         //   return ipi;
         // }, function(error){
@@ -133,7 +148,7 @@ class App extends Component {
         //   }
         // });
         // alert('antes firebase');
-        
+
         firebase.database().ref("leads/" + id).set({
           nome: nome,
           email: email,
@@ -144,15 +159,18 @@ class App extends Component {
           if (error) {
             alert(error);
           } else {
-            alert('Cadastro enviado com Sucesso!!!!');
-            component.setState({ nome: '', email: '', ip: '', tipo: '', nomeErro: 'Não mande o nome em branco!!',
-            emailErro: 'Não mande o endereço de e-mail em branco!!' });
+            alert('Prepare-se!!!!');
+            window.location.href = "https://pt.surveymonkey.com/r/N8ZXDGY";
+            component.setState({
+              nome: '', email: '', ip: '', tipo: '', nomeErro: 'Não mande o nome em branco!!',
+              emailErro: 'Não mande o endereço de e-mail em branco!!'
+            });
           }
         });
         identificacao = id;
       }
     }
-      return identificacao;
+    return identificacao;
   }
   verificaMudancaNome = (event) => {
 
@@ -164,11 +182,11 @@ class App extends Component {
   }
   validarNome = () => {
     const { nome } = this.state;
-    this.setState({ nomeErro: nome.length > 3 ? '' :  'O nome deve ter mais de 3 caracteres' })
+    this.setState({ nomeErro: nome.length > 3 ? '' : 'O nome deve ter mais de 3 caracteres' })
   }
   validarEmail = () => {
     const { email } = this.state;
-    this.setState({ emailErro: email.length > 3 ?  '' : 'O email deve ter mais de 3 caracteres' })
+    this.setState({ emailErro: email.length > 3 ? '' : 'O email deve ter mais de 3 caracteres' })
   }
   publicacoes() {
     return (
@@ -197,7 +215,7 @@ class App extends Component {
     return (
       <form className="form-geral">
         <h2>Cadastre-se</h2>
-        <p>E fique sempre atualizado sobre notícias de Tecnologia na Medicina. É grátis!</p>
+        <p>E descubra o quanto você sabe sobre Tecnologia na Medicina. É grátis!</p>
         <div className="input-container">
           <i className="fa icon"><FontAwesomeIcon icon="user" /></i>
           <input className="input-field" name="nome" placeholder="Nome"
@@ -211,7 +229,7 @@ class App extends Component {
             value={this.state.email}
             onChange={this.verificaMudancaEmail} />
         </div>
-        <button className="btn" onClick={this.envioForm}  type="submit">Enviar</button>
+        <button className="btn" onClick={this.envioForm} type="submit">Fazer o quiz e descobrir</button>
         {/* <input  onClick={this.envioForm} type="submit" className="btn" value="Enviar" /> */}
         <h4>Não enviaremos Spam...</h4>
 
@@ -236,6 +254,16 @@ class App extends Component {
           </div>
           <div className="App-informacoes">
             {this.informacoes()}
+            <section>
+          {/* <h1> MOdal exemplo</h1>
+          <input type="button" value="Open" onClick={() => this.openModal()} /> */}
+                <Modal visible={this.state.visible} width="300" height="395" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div>
+                        {this.informacoes()}
+                       
+                    </div>
+                </Modal>
+      </section>
           </div>
         </div>
         <footer className="App-footer">

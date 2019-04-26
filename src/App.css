@@ -9,6 +9,7 @@
 }
 .App-image {
   height: 40vmin;
+  border-radius: 35px;
   pointer-events: none;
 }
 
@@ -208,7 +209,7 @@ p{
   padding: 15px 20px;
   border: none;
   cursor: "pointer";
-  width: 100px;
+  width: 280px;
   opacity: 0.9;
   border-radius: 10px;
   font-family: 'Roboto', sans-serif;
@@ -218,7 +219,7 @@ p{
   font-stretch: normal;
   line-height: 1.05;
   letter-spacing: normal;
-  text-align: left;
+  text-align: center;
 }
 
 .btn:hover {
