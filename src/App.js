@@ -229,7 +229,7 @@ class App extends Component {
             value={this.state.email}
             onChange={this.verificaMudancaEmail} />
         </div>
-        <button className="btn" onClick={this.envioForm} type="submit">Fazer o quiz e descobrir</button>
+        <button className="btn" onClick={this.envioForm} type="submit">Descobrir</button>
         {/* <input  onClick={this.envioForm} type="submit" className="btn" value="Enviar" /> */}
         <h4>Não enviaremos Spam...</h4>
 
